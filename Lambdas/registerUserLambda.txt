@@ -1,0 +1,32 @@
+import json
+import boto3
+from botocore.exceptions import ClientError
+import hashlib
+
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('Users')
+
+def lambda_handler(event, context):
+    username = event['username']
+    password = event['password']
+    
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    
+    try:
+        response = table.put_item(
+            Item={
+                'username': username,
+                'password': hashed_password,
+                'photoUrl': ''
+            }
+        )
+    except ClientError as e:
+        return {
+            'statusCode': 400,
+            'body': json.dumps(e.response['Error']['Message'])
+        }
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps('User registered successfully')
+    }
