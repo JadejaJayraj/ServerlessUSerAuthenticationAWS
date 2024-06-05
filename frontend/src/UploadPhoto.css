@@ -1,0 +1,31 @@
+.upload-photo-container {
+  margin-bottom: 20px;
+}
+
+.upload-photo-container h2 {
+  color: #333;
+}
+
+.upload-photo-container input {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.upload-photo-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-photo-container button:hover {
+  background-color: #0056b3;
+}
